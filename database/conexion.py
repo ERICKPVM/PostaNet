@@ -1,13 +1,5 @@
+import os
 import psycopg2
 
-
 def get_connection():
-
-    conexion = psycopg2.connect(
-        host="localhost",
-        database="postanet_db",
-        user="postgres",
-        password="1234"
-    )
-
-    return conexion
+    return psycopg2.connect(os.environ["DATABASE_URL"])
