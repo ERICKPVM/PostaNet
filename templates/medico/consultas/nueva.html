@@ -1,0 +1,124 @@
+{% extends "base_medico.html" %}
+
+{% block titulo %}
+Nueva Consulta Médica
+{% endblock %}
+
+{% block contenido %}
+
+<h2>🩺 Nueva Consulta Médica</h2>
+
+<br>
+
+<div class="card">
+
+<p>
+
+<strong>Paciente:</strong>
+
+{{ paciente[1] }} {{ paciente[2] }}
+
+</p>
+
+<p>
+
+<strong>CI:</strong>
+
+{{ paciente[3] }}
+
+</p>
+
+<p>
+
+<strong>Carpeta:</strong>
+
+{{ paciente[6] }}
+
+</p>
+
+<br>
+
+<form
+method="POST"
+action="{{ url_for('consultas.guardar_consulta') }}">
+
+<input
+type="hidden"
+name="id_paciente"
+value="{{ paciente[0] }}">
+
+<label>
+
+<strong>Motivo de consulta</strong>
+
+</label>
+
+<textarea
+name="motivo"
+rows="4"
+required></textarea>
+
+<label>
+
+<strong>Signos vitales</strong>
+
+</label>
+
+<textarea
+name="signos"
+rows="4"></textarea>
+
+<label>
+
+<strong>Diagnóstico</strong>
+
+</label>
+
+<textarea
+name="diagnostico"
+rows="6"
+required></textarea>
+
+<label>
+
+<strong>Tratamiento</strong>
+
+</label>
+
+<textarea
+name="tratamiento"
+rows="6"></textarea>
+
+<label>
+
+<strong>Observaciones</strong>
+
+</label>
+
+<textarea
+name="observaciones"
+rows="5"></textarea>
+
+<br>
+
+<button
+class="btn btn-nuevo"
+type="submit">
+
+💾 Guardar Consulta
+
+</button>
+
+<a
+class="btn btn-editar"
+href="{{ url_for('pacientes_medico.ver_paciente', id_paciente=paciente[0]) }}">
+
+⬅ Volver
+
+</a>
+
+</form>
+
+</div>
+
+{% endblock %}

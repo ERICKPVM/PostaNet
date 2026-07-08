@@ -1,0 +1,67 @@
+{% extends "base_medico.html" %}
+
+{% block titulo %}
+Dashboard Médico
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Panel de Médico</h2>
+
+<p>
+
+Bienvenido,
+
+<strong>{{ session["usuario"] }}</strong>
+
+</p>
+
+<br>
+
+<div class="dashboard">
+
+    <div class="dashboard-card">
+
+        <h3>Pacientes</h3>
+
+        <div class="numero">
+
+            {{ total_pacientes }}
+
+        </div>
+
+        <p>Pacientes registrados</p>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h3>Consultas</h3>
+
+        <div class="numero">
+
+            {{ total_consultas }}
+
+        </div>
+
+        <p>Total consultas</p>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h3>Hoy</h3>
+
+        <div class="numero">
+
+            {{ consultas_hoy }}
+
+        </div>
+
+        <p>Consultas realizadas</p>
+
+    </div>
+
+</div>
+
+{% endblock %}

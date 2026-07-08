@@ -1,0 +1,104 @@
+{% extends "base_recepcion.html" %}
+
+{% block titulo %}
+Carpetas Familiares
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Carpetas Familiares</h2>
+
+<p>Administración de carpetas médicas.</p>
+
+<br>
+
+<a class="btn btn-nuevo"
+href="{{ url_for('familias.nueva_familia') }}">
+
+➕ Nueva Carpeta
+
+</a>
+
+<form
+method="GET"
+action="{{ url_for('familias.buscar_familia') }}">
+
+    <input
+        type="text"
+        name="buscar"
+        placeholder="Buscar por N° de carpeta, nombre, apellido o CI">
+
+    <br><br>
+
+    <button>
+
+        Buscar
+
+    </button>
+
+</form>
+
+<br><br>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>N° Carpeta</th>
+
+            <th>Paciente Principal</th>
+
+            <th>Dirección</th>
+
+            <th>Zona</th>
+
+            <th>Ubicación Física</th>
+
+            <th>Estado</th>
+
+            <th>Acciones</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for familia in familias %}
+
+    <tr>
+
+        <td>{{ familia[1] }}</td>
+
+        <td>{{ familia[2] }}</td>
+
+        <td>{{ familia[3] }}</td>
+
+        <td>{{ familia[4] }}</td>
+
+        <td>{{ familia[5] }}</td>
+
+        <td>{{ familia[6] }}</td>
+
+        <td>
+
+            <a class="btn btn-editar"
+                href="{{ url_for('familias.ver_familia', id_familia=familia[0]) }}">
+
+                📂 Abrir Carpeta
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

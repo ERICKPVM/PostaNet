@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Registrar Usuario
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Registrar Nuevo Usuario</h2>
+{% if error %}
+
+<p style="color:red;font-weight:bold;">
+
+    {{ error }}
+
+</p>
+
+<br>
+
+{% endif %}
+
+<form method="POST"
+      action="{{ url_for('usuarios.guardar_usuario') }}">
+
+    <label>Nombre de Usuario</label>
+
+    <input
+        type="text"
+        name="nombre_usuario"
+        required>
+
+    <br><br>
+
+    <label>Contraseña</label>
+
+    <input
+        type="password"
+        name="password"
+        required>
+
+    <br><br>
+
+    <label>Nombre Completo</label>
+
+    <input
+        type="text"
+        name="nombre_completo"
+        required>
+
+    <br><br>
+
+    <label>Rol</label>
+
+    <select name="rol" required>
+
+        <option value="">Seleccione...</option>
+
+        <option value="administrador">
+            Administrador
+        </option>
+
+        <option value="recepcionista">
+            Recepcionista
+        </option>
+
+        <option value="medico">
+            Médico
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+
+        💾 Guardar Usuario
+
+    </button>
+
+    <a href="{{ url_for('usuarios.listar_usuarios') }}"
+       class="btn btn-desactivar">
+
+        Cancelar
+
+    </a>
+
+</form>
+
+{% endblock %}

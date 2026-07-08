@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        {% block titulo %}
+
+        PostaNet
+
+        {% endblock %}
+
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🏥 PostaNet</h1>
+
+</header>
+
+<div class="container">
+
+    <nav class="sidebar">
+
+        <ul>
+
+            <li>
+                <a href="{{ url_for('dashboard_admin.dashboard') }}">
+                    🏠 Inicio
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('usuarios.listar_usuarios') }}">
+                    👥 Usuarios
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('usuarios.nuevo_usuario') }}">
+                    ➕ Nuevo Usuario
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('zonas.listar_zonas') }}">
+                    📍 Zonas
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('zonas.nueva_zona') }}">
+                    ➕ Nueva Zona
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('auth.logout') }}">
+                    🚪 Cerrar Sesión
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <main class="content">
+
+        <div class="card">
+
+            {% block contenido %}
+
+            {% endblock %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

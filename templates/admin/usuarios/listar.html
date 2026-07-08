@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Usuarios
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Usuarios Registrados</h2>
+
+<p>Administración de usuarios del sistema.</p>
+
+<br>
+
+<a href="{{ url_for('usuarios.nuevo_usuario') }}" class="btn btn-nuevo">
+    ➕ Nuevo Usuario
+</a>
+
+<br><br>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Nombre Completo</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for usuario in usuarios %}
+
+        <tr>
+
+            <td>{{ usuario[0] }}</td>
+
+            <td>{{ usuario[1] }}</td>
+
+            <td>{{ usuario[2] }}</td>
+
+            <td>{{ usuario[3] }}</td>
+
+            <td>
+
+                {% if usuario[4] %}
+
+                    <span style="color:green;font-weight:bold;">
+                        Activo
+                    </span>
+
+                {% else %}
+
+                    <span style="color:red;font-weight:bold;">
+                        Inactivo
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a class="btn btn-editar"
+                   href="{{ url_for('usuarios.editar_usuario', id_usuario=usuario[0]) }}">
+
+                    ✏ Editar
+
+                </a>
+
+                {% if usuario[4] %}
+
+                <a class="btn btn-desactivar"
+                   href="{{ url_for('usuarios.desactivar_usuario', id_usuario=usuario[0]) }}"
+                   onclick="return confirm('¿Desea desactivar este usuario?')">
+
+                    🔒 Desactivar
+
+                </a>
+
+                {% else %}
+
+                <a class="btn btn-nuevo"
+                   href="{{ url_for('usuarios.activar_usuario', id_usuario=usuario[0]) }}"
+                   onclick="return confirm('¿Desea activar este usuario?')">
+
+                    🔓 Activar
+
+                </a>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

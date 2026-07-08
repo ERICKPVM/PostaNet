@@ -1,0 +1,35 @@
+{% extends "base_recepcion.html" %}
+
+{% block titulo %}
+Panel Recepción
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Panel de Recepción</h2>
+
+<p>
+
+Bienvenido,
+
+<strong>{{ session["usuario"] }}</strong>
+
+</p>
+
+<br>
+
+<table>
+
+    <tr>
+        <th>Carpetas Familiares</th>
+        <th>Pacientes</th>
+    </tr>
+
+    <tr>
+        <td>{{ total_familias }}</td>
+        <td>{{ total_pacientes }}</td>
+    </tr>
+
+</table>
+
+{% endblock %}

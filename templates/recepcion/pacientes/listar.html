@@ -1,0 +1,146 @@
+{% extends "base_recepcion.html" %}
+
+{% block titulo %}
+Pacientes
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Pacientes Registrados</h2>
+
+<p>
+Administración de pacientes registrados en el sistema.
+</p>
+
+<br>
+
+<a class="btn btn-nuevo"
+   href="{{ url_for('pacientes.nuevo_paciente') }}">
+
+    ➕ Nuevo Paciente
+
+</a>
+
+<form method="GET"
+      action="{{ url_for('pacientes.buscar_paciente') }}">
+
+    <br>
+
+    <input
+        type="text"
+        name="buscar"
+        placeholder="Buscar por CI, nombre o apellido">
+
+    <br><br>
+
+    <button type="submit">
+
+        Buscar
+
+    </button>
+
+</form>
+
+<br>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>CI</th>
+            <th>Fecha Nacimiento</th>
+            <th>Género</th>
+            <th>Carpeta</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for paciente in pacientes %}
+
+        <tr>
+
+            <td>{{ paciente[1] }}</td>
+
+            <td>{{ paciente[2] }}</td>
+
+            <td>{{ paciente[3] }}</td>
+
+            <td>{{ paciente[4] }}</td>
+
+            <td>{{ paciente[5] }}</td>
+
+            <td>{{ paciente[6] }}</td>
+
+            <td>
+
+                {% if paciente[7] %}
+
+                    <span class="estado-activo">
+
+                        Activo
+
+                    </span>
+
+                {% else %}
+
+                    <span class="estado-inactivo">
+
+                        Inactivo
+
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a class="btn btn-editar"
+                   href="{{ url_for('pacientes.editar_paciente', id_paciente=paciente[0]) }}">
+
+                    ✏ Editar
+
+                </a>
+
+                {% if paciente[7] %}
+
+                <a class="btn btn-desactivar"
+                   href="{{ url_for('pacientes.desactivar_paciente', id_paciente=paciente[0]) }}"
+                   onclick="return confirm('¿Desea desactivar este paciente?')">
+
+                    🔒 Desactivar
+
+                </a>
+
+                {% else %}
+
+                <a class="btn btn-nuevo"
+                   href="{{ url_for('pacientes.activar_paciente', id_paciente=paciente[0]) }}"
+                   onclick="return confirm('¿Desea activar este paciente?')">
+
+                    🔓 Activar
+
+                </a>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

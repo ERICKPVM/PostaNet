@@ -1,0 +1,54 @@
+{% extends "base_recepcion.html" %}
+
+{% block titulo %}
+Nueva Carpeta
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Registrar Carpeta Familiar</h2>
+
+<form method="POST"
+      action="{{ url_for('familias.guardar_familia') }}">
+
+    <label>Dirección</label>
+
+    <input
+        type="text"
+        name="direccion"
+        required>
+
+    <label>Zona</label>
+
+    <select name="id_zona" required>
+
+        {% for zona in zonas %}
+
+            <option value="{{ zona[0] }}">
+
+                {{ zona[1] }}
+
+            </option>
+
+        {% endfor %}
+
+    </select>
+
+    <label>Ubicación Física</label>
+
+    <input
+        type="text"
+        name="ubicacion_fisica"
+        required>
+
+    <br><br>
+
+    <button>
+
+        Guardar Carpeta
+
+    </button>
+
+</form>
+
+{% endblock %}

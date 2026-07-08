@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Zonas
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Zonas Registradas</h2>
+
+<p>Administración de zonas de la posta médica.</p>
+
+<br>
+
+<a href="{{ url_for('zonas.nueva_zona') }}" class="btn btn-nuevo">
+    ➕ Nueva Zona
+</a>
+
+<br><br>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for zona in zonas %}
+
+    <tr>
+
+        <td>{{ zona[0] }}</td>
+
+        <td>{{ zona[1] }}</td>
+
+        <td>
+
+            <a href="{{ url_for('zonas.editar_zona', id_zona=zona[0]) }}"
+               class="btn btn-editar">
+
+                ✏️ Editar
+
+            </a>
+
+            <a href="{{ url_for('zonas.eliminar_zona', id_zona=zona[0]) }}"
+               class="btn btn-desactivar"
+               onclick="return confirm('¿Desea eliminar esta zona?')">
+
+                🗑 Eliminar
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

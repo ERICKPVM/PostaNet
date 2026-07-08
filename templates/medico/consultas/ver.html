@@ -1,0 +1,105 @@
+{% extends "base_medico.html" %}
+
+{% block titulo %}
+Consulta Médica
+{% endblock %}
+
+{% block contenido %}
+
+<h2>🩺 Consulta Médica</h2>
+
+<br>
+
+<p>
+
+<strong>Paciente:</strong>
+
+{{ consulta[2] }} {{ consulta[3] }}
+
+</p>
+
+<p>
+
+<strong>CI:</strong>
+
+{{ consulta[4] }}
+
+</p>
+
+<p>
+
+<strong>Médico:</strong>
+
+{{ consulta[5] }}
+
+</p>
+
+<p>
+
+<strong>Fecha:</strong>
+
+{{ consulta[1].strftime("%d/%m/%Y %H:%M") }}
+
+</p>
+
+<hr>
+
+<h3>Motivo de consulta</h3>
+
+<p>
+
+{{ consulta[6] }}
+
+</p>
+
+<hr>
+
+<h3>Signos vitales</h3>
+
+<p>
+
+{{ consulta[7] or "No registrados." }}
+
+</p>
+
+<hr>
+
+<h3>Diagnóstico</h3>
+
+<p>
+
+{{ consulta[8] }}
+
+</p>
+
+<hr>
+
+<h3>Tratamiento</h3>
+
+<p>
+
+{{ consulta[9] or "No registrado." }}
+
+</p>
+
+<hr>
+
+<h3>Observaciones</h3>
+
+<p>
+
+{{ consulta[10] or "Sin observaciones." }}
+
+</p>
+
+<br>
+
+<a
+class="btn btn-editar"
+href="javascript:history.back()">
+
+⬅ Volver
+
+</a>
+
+{% endblock %}

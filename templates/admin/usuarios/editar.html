@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Editar Usuario
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Editar Usuario</h2>
+
+<form method="POST"
+      action="{{ url_for('usuarios.actualizar_usuario') }}">
+
+    <input
+        type="hidden"
+        name="id_usuario"
+        value="{{ usuario[0] }}">
+
+    <label>Nombre de Usuario</label>
+
+    <input
+        type="text"
+        name="nombre_usuario"
+        value="{{ usuario[1] }}"
+        required>
+
+    <br><br>
+
+    <label>Nombre Completo</label>
+
+    <input
+        type="text"
+        name="nombre_completo"
+        value="{{ usuario[2] }}"
+        required>
+
+    <br><br>
+
+    <label>Rol</label>
+
+    <select
+        name="rol"
+        required>
+
+        <option value="administrador"
+        {% if usuario[3]=="administrador" %}selected{% endif %}>
+            Administrador
+        </option>
+
+        <option value="recepcionista"
+        {% if usuario[3]=="recepcionista" %}selected{% endif %}>
+            Recepcionista
+        </option>
+
+        <option value="medico"
+        {% if usuario[3]=="medico" %}selected{% endif %}>
+            Médico
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+
+        💾 Actualizar Usuario
+
+    </button>
+
+    <a href="{{ url_for('usuarios.listar_usuarios') }}"
+       class="btn btn-desactivar">
+
+        Cancelar
+
+    </a>
+
+</form>
+
+{% endblock %}

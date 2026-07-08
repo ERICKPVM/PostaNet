@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Registrar Zona
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Registrar Nueva Zona</h2>
+
+<form method="POST"
+      action="{{ url_for('zonas.guardar_zona') }}">
+
+    <label>Nombre de la Zona</label>
+
+    <br><br>
+
+    <input
+        type="text"
+        name="nombre_zona"
+        placeholder="Ejemplo: Zona Norte"
+        required>
+
+    <br><br>
+
+    <button type="submit">
+        💾 Guardar
+    </button>
+
+    <a href="{{ url_for('zonas.listar_zonas') }}">
+        Cancelar
+    </a>
+
+</form>
+
+{% endblock %}

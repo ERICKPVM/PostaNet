@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Panel Administrador
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Panel de Administración</h2>
+
+<p>
+
+Bienvenido,
+
+<strong>{{ session["usuario"] }}</strong>
+
+</p>
+
+<br>
+
+<div class="dashboard">
+
+    <div class="dashboard-card">
+
+        <h3>👥 Usuarios</h3>
+
+        <div class="numero">
+
+            {{ total_usuarios }}
+
+        </div>
+
+        <p>Registrados</p>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h3>📍 Zonas</h3>
+
+        <div class="numero">
+
+            {{ total_zonas }}
+
+        </div>
+
+        <p>Registradas</p>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h3>👨‍⚕️ Médicos</h3>
+
+        <div class="numero">
+
+            {{ total_medicos }}
+
+        </div>
+
+        <p>Registrados</p>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h3>📁 Pacientes</h3>
+
+        <div class="numero">
+
+            {{ total_pacientes }}
+
+        </div>
+
+        <p>Registrados</p>
+
+    </div>
+
+</div>
+
+{% endblock %}

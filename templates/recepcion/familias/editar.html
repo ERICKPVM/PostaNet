@@ -1,0 +1,92 @@
+{% extends "base_recepcion.html" %}
+
+{% block titulo %}
+Editar Carpeta
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Editar Carpeta Familiar</h2>
+
+<form method="POST"
+      action="{{ url_for('familias.actualizar_familia') }}">
+
+    <input
+        type="hidden"
+        name="id_familia"
+        value="{{ familia[0] }}">
+
+    <label>Número de Carpeta</label>
+
+    <input
+        type="text"
+        name="numero_carpeta"
+        value="{{ familia[1] }}"
+        required>
+
+    <label>Dirección</label>
+
+    <input
+        type="text"
+        name="direccion"
+        value="{{ familia[2] }}"
+        required>
+
+    <label>Zona</label>
+
+    <select name="id_zona">
+
+        {% for zona in zonas %}
+
+        <option
+            value="{{ zona[0] }}"
+            {% if zona[0] == familia[3] %}selected{% endif %}>
+
+            {{ zona[1] }}
+
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <label>Ubicación Física</label>
+
+    <input
+        type="text"
+        name="ubicacion_fisica"
+        value="{{ familia[4] }}"
+        required>
+
+    <label>Estado</label>
+
+    <select name="estado">
+
+        <option value="Disponible"
+            {% if familia[5]=="Disponible" %}selected{% endif %}>
+            Disponible
+        </option>
+
+        <option value="Prestada"
+            {% if familia[5]=="Prestada" %}selected{% endif %}>
+            Prestada
+        </option>
+
+        <option value="Extraviada"
+            {% if familia[5]=="Extraviada" %}selected{% endif %}>
+            Extraviada
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <button>
+
+        Guardar Cambios
+
+    </button>
+
+</form>
+
+{% endblock %}

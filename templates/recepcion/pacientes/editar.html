@@ -1,0 +1,97 @@
+{% extends "base_recepcion.html" %}
+
+{% block titulo %}
+Editar Paciente
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Editar Paciente</h2>
+
+<form method="POST"
+action="{{ url_for('pacientes.actualizar_paciente') }}">
+
+<input
+type="hidden"
+name="id_paciente"
+value="{{ paciente[0] }}">
+
+<label>Nombres</label>
+
+<input
+type="text"
+name="nombres"
+value="{{ paciente[1] }}"
+required>
+
+<label>Apellidos</label>
+
+<input
+type="text"
+name="apellidos"
+value="{{ paciente[2] }}"
+required>
+
+<label>CI</label>
+
+<input
+type="text"
+name="ci"
+value="{{ paciente[3] }}"
+required>
+
+<label>Fecha de nacimiento</label>
+
+<input
+type="date"
+name="fecha_nacimiento"
+value="{{ paciente[4] }}"
+required>
+
+<label>Género</label>
+
+<select name="genero">
+
+<option value="M" {% if paciente[5]=="M" %}selected{% endif %}>
+Masculino
+</option>
+
+<option value="F" {% if paciente[5]=="F" %}selected{% endif %}>
+Femenino
+</option>
+
+<option value="O" {% if paciente[5]=="O" %}selected{% endif %}>
+Otro
+</option>
+
+</select>
+
+<label>Carpeta Familiar</label>
+
+<select name="id_familia">
+
+{% for familia in familias %}
+
+<option
+value="{{ familia[0] }}"
+{% if familia[0]==paciente[6] %}selected{% endif %}>
+
+{{ familia[1] }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<button>
+
+Guardar Cambios
+
+</button>
+
+</form>
+
+{% endblock %}
